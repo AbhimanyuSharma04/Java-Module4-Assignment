@@ -1,0 +1,144 @@
+Module 4 Theory
+Name: Abhimanyu Sharma
+
+GENERICS
+--------
+Q. Purpose of generics?
+Generics let us write one class or method that works with different types. Compiler checks the type so we dont put String in a list of Integer. Code is reused and type casting is not needed.
+
+Q. Syntax of user defined generic class?
+class Box<T> {
+    T item;
+}
+T is the type parameter. We use it like Box<String> b = new Box<String>();
+
+Q. Bounded type parameters?
+We can limit T like <T extends Number> so only Number subclasses like Integer, Double are allowed.
+
+Q. ? extends T vs ? super T?
+? extends T means the type is T or a child of T. Used when we only read values (producer).
+? super T means T or a parent of T. Used when we write values (consumer).
+Example: List<? extends Number> can be List<Integer>, we can get Number from it.
+List<? super Integer> can be List<Number>, we can add Integer to it.
+
+Q. Raw types vs parameterized types?
+Raw type is List without <Integer>. Parameterized is List<Integer>.
+Raw types skip generic checks so they are not type safe. We should not use them.
+
+JAVA.UTIL AND COLLECTION FRAMEWORK
+----------------------------------
+Q. What is java.util?
+It has utility classes like ArrayList, HashMap, Date, Scanner, Collections. Almost every Java program needs it.
+
+Q. Key features of Collection Framework?
+Ready made data structures, common interfaces, iterators, algorithms like sort and search, can grow in size.
+
+Q. Collection vs Collections?
+Collection is an interface. Collections is a class with static methods like sort(), shuffle(), reverse().
+
+Q. Iterator?
+Iterator is used to go through elements one by one using hasNext() and next(). We can also remove using iterator.remove().
+
+Q. Comparator vs Comparable?
+Comparable is implemented by the class itself, compareTo() gives natural order.
+Comparator is a separate class or lambda, used when we want another order like sort by marks.
+
+Q. Key interfaces?
+Iterable -> Collection -> List, Set, Queue.
+Map is separate. SortedSet, SortedMap, Deque also exist.
+
+Q. Collection vs Map?
+Collection stores single values. Map stores key-value pairs. Map does not extend Collection.
+
+Q. Set vs List vs Queue?
+List allows duplicates and index access.
+Set does not allow duplicates.
+Queue is for FIFO, offer and poll.
+
+Q. Iterable?
+It has iterator() method. For-each loop works because Collection extends Iterable.
+
+Q. Benefits over arrays?
+Size can grow, many methods already written, different implementations, can store objects easily.
+
+LIST
+----
+Q. List vs Set?
+List has order and duplicates. Set has unique elements only.
+
+Q. ArrayList vs LinkedList?
+ArrayList is fast for get(index). LinkedList is faster for add/remove at ends. ArrayList uses array, LinkedList uses nodes.
+
+Q. Vector?
+Vector is like ArrayList but synchronized. It is older. ArrayList is used more now.
+
+Q. Stack?
+Stack extends Vector. It has push, pop, peek. It is a List also. ArrayDeque is a better stack now.
+
+SET
+---
+Q. Set vs List?
+Set = unique, List = can repeat.
+
+Q. HashSet vs LinkedHashSet vs TreeSet?
+HashSet no order.
+LinkedHashSet keeps insertion order.
+TreeSet keeps sorted order.
+
+Q. HashSet duplicates?
+HashSet uses hashCode and equals. If both match, it is treated as same element and not added again.
+
+Q. equals and hashCode?
+If two objects are equal, hashCode must be same. HashSet uses these to find the bucket and check duplicate.
+
+MAP
+---
+Q. Map vs Collection?
+Map is key-value. Collection is just values.
+
+Q. HashMap vs LinkedHashMap vs TreeMap?
+HashMap no order.
+LinkedHashMap insertion order.
+TreeMap sorted by key.
+
+Q. HashMap collisions?
+Two keys can have same hash. They go in the same bucket as a list or tree (after Java 8).
+
+Q. Hashtable vs HashMap?
+Hashtable is synchronized and does not allow null. HashMap is not synchronized and allows one null key. Hashtable is legacy.
+
+QUEUE
+-----
+Q. PriorityQueue?
+It is a queue that gives highest priority element first, not FIFO.
+
+Q. Deque vs Queue?
+Queue is one end insert, other end remove. Deque can insert and remove from both ends.
+
+Q. BlockingQueue vs PriorityQueue?
+BlockingQueue waits if full or empty (used in threads). PriorityQueue does not block, it orders by priority.
+
+Q. WeakHashMap?
+Keys are weak references. If no other strong reference to the key, GC can remove the entry. HashMap keeps keys strongly.
+
+CONCURRENCY
+-----------
+Q. Vector vs ArrayList thread safety?
+Vector methods are synchronized. ArrayList is not. Multiple threads can break ArrayList.
+
+Q. ConcurrentHashMap?
+It allows concurrent reads and updates. It locks parts of the map, not the whole map.
+
+Q. CopyOnWriteArrayList vs ArrayList?
+CopyOnWriteArrayList copies the array on write so iteration is safe. ArrayList can throw ConcurrentModificationException.
+
+Q. synchronizedCollection vs ConcurrentHashMap?
+synchronizedCollection locks the whole collection. ConcurrentHashMap is made for concurrent map use and is faster for many threads.
+
+COLLECTIONS UTILITY
+-------------------
+Common methods: sort, shuffle, reverse, binarySearch, frequency, min, max, synchronizedList, unmodifiableList.
+
+To make thread safe: Collections.synchronizedList(list)
+
+MAVEN / other theory already covered above.
